@@ -8,10 +8,9 @@ services:
       traefik.enable: "true"
     ports:
       - "80:80"
-      - "8080:8080"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - ./traefik/traefik-dev.yml:/etc/traefik/traefik.yml:ro
+      - ./traefik/traefik-prod.yml:/etc/traefik/traefik.yml:ro
     networks:
       proxy:
         ipv4_address: 10.200.0.2
@@ -20,7 +19,7 @@ services:
     image: "traefik/whoami"
     labels:
       - traefik.enable=true
-      - traefik.http.routers.whoami.rule=Host(`ping.chylo.local`)
+      - traefik.http.routers.whoami.rule=Host(`ping.chylo.pl`)
       - traefik.docker.network=proxy
     networks:
       proxy:

@@ -1,0 +1,11 @@
+providers:
+  docker:
+    exposedByDefault: false
+    network: "proxy"
+entrypoints:
+  web:
+    address: ":80"
+http:
+  routers:
+    traefik:
+      rule: "Host(`proxy.chylo.pl`)"

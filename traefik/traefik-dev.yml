@@ -1,0 +1,15 @@
+log:
+  level: "DEBUG"
+providers:
+  docker:
+    exposedByDefault: false
+    network: "proxy"
+api:
+  insecure: true
+entrypoints:
+  web:
+    address: ":80"
+http:
+  routers:
+    traefik:
+      rule: "Host(`proxy.chylo.local`,`dashboard.traefik.me`)"
