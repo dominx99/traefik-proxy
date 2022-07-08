@@ -3,7 +3,9 @@ providers:
     exposedByDefault: false
     network: "proxy"
 entrypoints:
-  web:
+  http:
+    address: ":80"
+  https:
     address: ":443"
 http:
   routers:
