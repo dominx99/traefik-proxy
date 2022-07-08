@@ -15,9 +15,10 @@ http:
       rule: "Host(`proxy.chylo.local`,`dashboard.traefik.me`)"
 
 certificatesResolvers:
-  myresolver:
+  lets_encrypt_resolver:
     acme:
       email: "test@example.com"
       storage: "/letsencrypt/acme.json"
       caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
-      tlsChallenge:
+      httpChallenge:
+        entryPoint: web
