@@ -7,9 +7,7 @@ providers:
 api:
   insecure: true
 entrypoints:
-  http:
-    address: ":80"
-  https:
+  web:
     address: ":443"
 http:
   routers:
