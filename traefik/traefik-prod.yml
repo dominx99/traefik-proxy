@@ -1,9 +1,20 @@
+log:
+  level: "DEBUG"
+  filePath: "/logs/traefik.log"
 providers:
   docker:
     exposedByDefault: false
     network: "proxy"
-entrypoints:
+entryPoints:
   web:
+    address: ":80"
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
+          permanent: true
+  websecure:
     address: ":443"
 http:
   routers:
@@ -14,7 +25,7 @@ certificatesResolvers:
   lets_encrypt_resolver:
     acme:
       email: "dominx992@gmail.com"
-      storage: "/letsencrypt/acme.json"
+      storage: "acme/acme.json"
       dnsChallenge:
         provider: cloudflare
         resolvers:
