@@ -4,8 +4,20 @@ providers:
     network: "proxy"
 entrypoints:
   web:
-    address: ":80"
+    address: ":443"
 http:
   routers:
     traefik:
       rule: "Host(`proxy.chylo.pl`)"
+
+certificatesResolvers:
+  lets_encrypt_resolver:
+    acme:
+      email: "dominx992@gmail.com"
+      storage: "/letsencrypt/acme.json"
+      tlsChallenge:
+        dnsChallenge:
+          provider: cloudflare
+          resolvers:
+            - "1.1.1.1:53"
+            - "8.8.8.8:53"
