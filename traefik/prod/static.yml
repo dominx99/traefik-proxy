@@ -1,10 +1,12 @@
 log:
-  level: "DEBUG"
+  level: INFO
   filePath: "/logs/traefik.log"
+
 providers:
   docker:
     exposedByDefault: false
     network: "proxy"
+
 entryPoints:
   web:
     address: ":80"
@@ -16,6 +18,7 @@ entryPoints:
           permanent: true
   websecure:
     address: ":443"
+
 http:
   routers:
     traefik:

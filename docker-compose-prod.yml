@@ -14,7 +14,7 @@ services:
       - .env
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - ./traefik/traefik-prod.yml:/etc/traefik/traefik.yml:ro
+      - ./traefik/prod/static.yml:/etc/traefik/traefik.yml:ro
       - ./volumes/traefik/acme:/acme
       - ./volumes/traefik/logs:/logs
     networks:

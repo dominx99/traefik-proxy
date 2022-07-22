@@ -12,9 +12,9 @@ services:
       - "8080:8080"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - ./traefik/traefik-dev.yml:/etc/traefik/traefik.yml:ro
-      - ./volumes/traefik/acme:/acme
-      - ./volumes/traefik/logs:/logs
+      - ./traefik/dev/static.yml:/etc/traefik/traefik.yml:ro
+      - ./traefik/dev/dynamic.yml:/etc/traefik/dynamic.yml:ro
+      - ./certs:/etc/certs:ro
     networks:
       proxy:
         ipv4_address: 10.200.0.2
@@ -23,8 +23,9 @@ services:
     image: "traefik/whoami"
     labels:
       - traefik.enable=true
-      - traefik.http.routers.whoami.rule=Host(`ping.chylo.local`)
+      - traefik.http.routers.whoami.rule=Host(`ping.docker.localhost`)
       - traefik.docker.network=proxy
+      - "traefik.http.routers.whoami.tls=true"
     networks:
       proxy:
         ipv4_address: 10.200.0.3
