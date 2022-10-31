@@ -27,3 +27,5 @@ entryPoints:
           permanent: true
   websecure:
     address: ":443"
+  minecraft:
+    address: ":2565"

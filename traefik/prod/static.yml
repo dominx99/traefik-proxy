@@ -18,6 +18,12 @@ entryPoints:
           permanent: true
   websecure:
     address: ":443"
+  minecraft:
+    address: ":2565"
+
+api:
+  insecure: true
+  dashboard: true
 
 http:
   routers:

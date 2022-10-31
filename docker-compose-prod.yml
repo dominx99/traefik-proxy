@@ -4,12 +4,16 @@ services:
   traefik:
     image: "traefik:v2.5"
     container_name: "traefik"
+    command:
+      - --providers.docker
+      - --entrypoints.minecraft.address=:2565
     labels:
       traefik.enable: "true"
     ports:
       - "80:80"
       - "443:443"
       - "8080:8080"
+      - 2565:25565/tcp
     env_file:
       - .env
     volumes:
