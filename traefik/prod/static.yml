@@ -20,15 +20,12 @@ entryPoints:
     address: ":443"
   minecraft:
     address: ":2565"
+  vault:
+    address: ":8880"
 
 api:
   insecure: true
   dashboard: true
-
-http:
-  routers:
-    traefik:
-      rule: "Host(`proxy.chylo.pl`)"
 
 certificatesResolvers:
   lets_encrypt_resolver:

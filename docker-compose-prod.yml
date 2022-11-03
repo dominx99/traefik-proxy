@@ -2,18 +2,25 @@ version: "3"
 
 services:
   traefik:
-    image: "traefik:v2.5"
     container_name: "traefik"
+    build:
+      context: ./
+      target: proxy
+      dockerfile: ./Dockerfile-prod
+    image: ghcr.io/dominx99/main-proxy
     command:
       - --providers.docker
       - --entrypoints.minecraft.address=:2565
     labels:
-      traefik.enable: "true"
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.traefik.service=api@internal"
     ports:
       - "80:80"
       - "443:443"
       - "8080:8080"
       - 2565:25565/tcp
+      - "8880:8880"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - ./traefik/prod/static.yml:/etc/traefik/traefik.yml:ro

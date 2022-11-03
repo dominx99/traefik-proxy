@@ -1,3 +1,5 @@
 letsencrypt/
 volumes/
 certs/
+
+.env

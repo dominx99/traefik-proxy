@@ -9,3 +9,7 @@ up:
 
 down:
 	@docker-compose -f $(docker_compose_file) down
+
+cert:
+	mkcert -install
+	mkcert -cert-file certs/local-cert.pem -key-file certs/local-key.pem "docker.localhost" "*.docker.localhost" "local" "*.local"
