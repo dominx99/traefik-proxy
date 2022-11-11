@@ -43,7 +43,7 @@ jobs:
         uses: docker/bake-action@v2
         with:
           push: true
-          files: 'docker-compose-prod.yml'
+          files: 'docker-compose-build.yml'
           targets: 'traefik'
           set: |
             traefik.platform=linux/arm64
@@ -66,5 +66,5 @@ jobs:
           script: |
             cd workspace/proxy/main
             mv docker-compose-prod.yml docker-compose.yml
-            docker-compose pull
-            docker-compose up -d
+            docker-compose build --pull
+            docker-compose up traefik --pull always -d --force-recreate

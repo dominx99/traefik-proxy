@@ -3,10 +3,6 @@ version: "3"
 services:
   traefik:
     container_name: "traefik"
-    build:
-      context: ./
-      target: proxy
-      dockerfile: ./Dockerfile-prod
     image: ghcr.io/dominx99/main-proxy
     command:
       - --providers.docker
@@ -23,7 +19,6 @@ services:
       - "8880:8880"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - ./traefik/prod/static.yml:/etc/traefik/traefik.yml:ro
       - ./volumes/traefik/acme:/acme
       - ./volumes/traefik/logs:/logs
     networks:

@@ -1,1 +1,3 @@
-FROM traefik:v2.5 as proxy
+FROM traefik:v2.9.4 as proxy
+
+COPY ./traefik/prod/static.yml /etc/traefik/traefik.yml
