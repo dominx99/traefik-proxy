@@ -20,7 +20,7 @@ entryPoints:
     address: ":443"
   minecraft:
     address: ":2565"
-  vault:
+  test: # TODO: change to vault
     address: ":8880"
 
 api:
