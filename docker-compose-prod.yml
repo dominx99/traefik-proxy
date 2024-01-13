@@ -3,10 +3,7 @@ version: "3"
 services:
   traefik:
     container_name: "traefik"
-    build:
-      context: ./
-      target: proxy
-      dockerfile: ./Dockerfile-prod
+    image: ghcr.io/dominx99/main-proxy
     command:
       - --providers.docker
       - --entrypoints.minecraft.address=:2565
