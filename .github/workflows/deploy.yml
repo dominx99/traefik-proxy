@@ -46,7 +46,7 @@ jobs:
           files: 'docker-compose-build.yml'
           targets: 'traefik'
           set: |
-            traefik.platform=linux/arm64
+            traefik.platform=linux/amd64
 
       - name: Create project dir
         uses: appleboy/ssh-action@master
