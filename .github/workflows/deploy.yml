@@ -105,5 +105,6 @@ jobs:
           script: |
             cd /root/workspace/proxy/main
             mv docker-compose-prod.yml docker-compose.yml
+            echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
             docker-compose build --pull
             docker-compose up traefik --pull always -d --force-recreate
