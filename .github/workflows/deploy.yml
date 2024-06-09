@@ -82,8 +82,9 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOUSEHOLD_INSTANCE_HOST }}
-          protocol: ${{ secrets.HOUSEHOLD_INSTANCE_PORT }}
+          port: ${{ secrets.HOUSEHOLD_INSTANCE_PORT }}
           key: ${{ secrets.HOUSEHOLD_INSTANCE_PRIVATE_KEY }}
+          proxy_port: ${{ secrets.HOUSEHOLD_INSTANCE_PORT }}
           username: root
           script: |
             mkdir -p /root/workspace/proxy/main
@@ -92,8 +93,9 @@ jobs:
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.HOUSEHOLD_INSTANCE_HOST }}
-          protocol: ${{ secrets.HOUSEHOLD_INSTANCE_PORT }}
+          port: ${{ secrets.HOUSEHOLD_INSTANCE_PORT }}
           key: ${{ secrets.HOUSEHOLD_INSTANCE_PRIVATE_KEY }}
+          proxy_port: ${{ secrets.HOUSEHOLD_INSTANCE_PORT }}
           username: root
           source: "docker-compose-prod.yml,.env"
           target: "/root/workspace/proxy/main/"
@@ -102,8 +104,9 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOUSEHOLD_INSTANCE_HOST }}
-          protocol: ${{ secrets.HOUSEHOLD_INSTANCE_PORT }}
+          port: ${{ secrets.HOUSEHOLD_INSTANCE_PORT }}
           key: ${{ secrets.HOUSEHOLD_INSTANCE_PRIVATE_KEY }}
+          proxy_port: ${{ secrets.HOUSEHOLD_INSTANCE_PORT }}
           username: root
           script: |
             cd /root/workspace/proxy/main
