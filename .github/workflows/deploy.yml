@@ -48,36 +48,6 @@ jobs:
           set: |
             traefik.platform=linux/amd64
 
-      - name: Create project dir
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.INSTANCE_HOST }}
-          key: ${{ secrets.INSTANCE_PRIVATE_KEY }}
-          username: root
-          script: |
-            mkdir -p /root/workspace/proxy/main
-
-      - name: Copy docker-compose to the instance
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.INSTANCE_HOST }}
-          key: ${{ secrets.INSTANCE_PRIVATE_KEY }}
-          username: root
-          source: "docker-compose-prod.yml,.env"
-          target: "/root/workspace/proxy/main/"
-
-      - name: Start application
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.INSTANCE_HOST }}
-          key: ${{ secrets.INSTANCE_PRIVATE_KEY }}
-          username: root
-          script: |
-            cd /root/workspace/proxy/main
-            mv docker-compose-prod.yml docker-compose.yml
-            docker-compose build --pull
-            docker-compose up traefik --pull always -d --force-recreate
-
       - name: Create project dir for household
         uses: appleboy/ssh-action@master
         with:
