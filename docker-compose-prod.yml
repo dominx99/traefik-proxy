@@ -2,6 +2,7 @@ version: "3"
 
 services:
   traefik:
+    restart: unless-stopped
     container_name: "traefik"
     image: ghcr.io/dominx99/main-proxy
     command:
